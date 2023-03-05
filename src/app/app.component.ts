@@ -1,5 +1,7 @@
+import { environment } from './../environments/environment';
 import { CustomersService } from './../services/customers.service';
 import { Component, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +13,16 @@ export class AppComponent implements OnInit {
 
   customersData: [] = [];
 
-  constructor(private customersService: CustomersService) {
+  constructor(private customersService: CustomersService, private metaService: Meta) {
 
   }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    if (environment.prod) {
+      this.metaService.addTag({ httpEquiv: 'Content-Security-Policy', content: "upgrade-insecure-requests" });
+    }
 
     this.customersService.getCustomers('20230306').subscribe(res => this.customersData = res);
 
