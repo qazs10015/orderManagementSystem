@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<mat-dialog-content #accordion class="container">
+  <mat-accordion multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> 客戶資訊 </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>公司: 斯維特資訊</p>
+      <p>聯絡人: 偉慈先生 李</p>
+      <p>地址: 新竹市東區忠孝路182號1樓 East Dist., Hsinchu City 300</p>
+      <p>電話: 0919420119</p>
+      <p>問題概述: KLTWWRT BIOS無法寫入憑證</p>
+      <p>預約時間: 2023/03/23 08:00</p>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> 設備 </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>SN: PC1N1NDD</p>
+      <p>MTM: 20T1S0M000</p>
+      <p>PD: NB TP T14s G1 I7 32G 1T 10P</p>
+      <p>問題詳述:BIOS無法寫入憑證</p>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Note </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>this is Note</p>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> 提醒 </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>提醒</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="dialogAction">
+    <button mat-button (click)="toggleExpansionPanel()">
+      {{ "展開/關閉全部" }}
+    </button>
+    <div>
+      <button mat-button mat-dialog-close>取消</button>
+      <button mat-button (click)="execute()">確定</button>
+    </div>
+  </div>
+
+  <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>取消</button> -->
+</mat-dialog-actions>

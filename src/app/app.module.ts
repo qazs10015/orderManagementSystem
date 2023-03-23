@@ -15,6 +15,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ShareModule } from './share/share.module';
+import { CustomInfoComponent } from './dialogs/custom-info/custom-info.component';
 
 class CustomDateFormatter extends CalendarDateFormatter {
   public override monthViewColumnHeader({ date }: DateFormatterParams): string {
@@ -37,7 +38,8 @@ export function momentAdapterFactory() {
     AppComponent,
     CalendarComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    CustomInfoComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   { path: '', component: CalendarComponent },
   { path: 'calendar', component: CalendarComponent },
-  { path: '**', redirectTo: '/', pathMatch: 'full' }];
+  { path: '**', redirectTo: '/calendar', pathMatch: 'full' }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

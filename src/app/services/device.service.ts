@@ -10,7 +10,7 @@ export class DeviceService {
   destroyed = new Subject<void>();
   currentScreenSize: string = '';
 
-  private displayNameMap = new Map([
+  displayNameMap = new Map([
     [Breakpoints.XSmall, 'XSmall'],
     [Breakpoints.Small, 'Small'],
     [Breakpoints.Medium, 'Medium'],
@@ -20,14 +20,14 @@ export class DeviceService {
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 
-  async getCurrentDevice() {
+  getCurrentDevice() {
     // const state: BreakpointState = await firstValueFrom(this.breakpointObserver
     //   .observe(Array.from(this.displayNameMap.keys())));
 
     // const deviceSize = Object.keys(state.breakpoints).find(query => state.breakpoints[query] === true) ?? '';
     // return this.displayNameMap.get(deviceSize);
 
-    this.breakpointObserver
+    return this.breakpointObserver
       .observe([
         Breakpoints.XSmall,
         Breakpoints.Small,
@@ -35,14 +35,10 @@ export class DeviceService {
         Breakpoints.Large,
         Breakpoints.XLarge,
       ])
-      .pipe(takeUntil(this.destroyed))
-      .subscribe(result => {
-        for (const query of Object.keys(result.breakpoints)) {
-          if (result.breakpoints[query]) {
-            this.currentScreenSize = this.displayNameMap.get(query) ?? 'Unknown';
-            console.log(this.currentScreenSize);
-          }
-        }
-      });
+      .pipe(takeUntil(this.destroyed));
+  }
+
+  getScreenSizeName(deviceSize: string) {
+    return this.displayNameMap.get(deviceSize);
   }
 }

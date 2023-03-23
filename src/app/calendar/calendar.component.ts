@@ -1,7 +1,9 @@
+import { MatDialogConfig } from '@angular/material/dialog';
+import { DialogService } from './../services/dialog.service';
 
-import { Component, OnInit } from '@angular/core';
-import { CalendarEvent, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
-import * as moment from 'moment';
+import { Component, inject, OnInit } from '@angular/core';
+import { CalendarEvent, CalendarView } from 'angular-calendar';
+import { CustomInfoComponent } from '../dialogs/custom-info/custom-info.component';
 
 export const colors: any = {
   red: {
@@ -58,7 +60,11 @@ export class CalendarComponent implements OnInit {
     },
   ];
 
+  dialog = inject(DialogService);
+
   ngOnInit(): void {
+
+
   }
 
   eventClicked({ event }: { event: CalendarEvent }): void {
@@ -66,6 +72,36 @@ export class CalendarComponent implements OnInit {
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+
+    const data = {
+      "data": {
+        "id": "4007323949",
+        "customer": "李 偉慈 ",
+        "status": 5,
+        "repairTime": "2023-03-20 08:00:00",
+        "SN": "PC1SAWMP",
+        "MTM": "20T1S07K00",
+        "productDescription": "NB TP T14s G1 I7 32G 1T 10P",
+        "case": "KLTWWRT 相機無畫面",
+        "problemDescription": "相機無畫面",
+        "diagnosticNote": "",
+        "repairNote": "",
+        "companyName": "斯維特資訊",
+        "address": "新竹市東區忠孝路182號1F\r\nEast Dist., Hsinchu City 300",
+        "mobilePhone": "0919420119",
+        "businessPhone": "0",
+        "extension": "",
+        "note": ""
+      },
+      "message": 1
+    }
+
+    const config: MatDialogConfig = {
+      data,
+      minWidth: '375px'
+    };
+    this.dialog.openDialog(CustomInfoComponent, config);
+
     // if (isSameMonth(date, this.viewDate)) {
     //   if (
     //     (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
